@@ -1,16 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CryptoData } from '../../dashboard/dashboard.service';
+import { DecimalPercentagePipe } from '../../shared/pipes/decimal-percentage.pipe';
 
-export interface CryptoCardConfiguration {
-  name: string;
-  logo: string;
-  value: string;
-  variation: string;
-}
+export interface CryptoCardConfiguration extends CryptoData {}
 
 @Component({
   selector: 'app-crypto-card',
-  imports: [CommonModule],
+  imports: [CommonModule, DecimalPercentagePipe],
   templateUrl: './crypto-card.html',
   styleUrl: './crypto-card.scss',
 })

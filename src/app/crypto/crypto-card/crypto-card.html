@@ -1,12 +1,14 @@
 <div class="crypto-card">
   <div class="crypto-card__img">
-    <img [src]="cryptoConfig.logo" alt="" />
+    <img [src]="cryptoConfig.image" alt="" />
   </div>
   <div class="crypto-card__details">
     <span class="crypto-name">{{ cryptoConfig.name }}</span>
     <div class="value-container">
-      <span class="value">{{ cryptoConfig.value }}</span>
-      <span class="variation">{{ cryptoConfig.variation }}</span>
+      <span class="value">$ {{ cryptoConfig.current_price }}</span>
+      <span class="variation">
+        {{ cryptoConfig.price_change_percentage_24h | decimalPercentage }}
+      </span>
     </div>
   </div>
 </div>

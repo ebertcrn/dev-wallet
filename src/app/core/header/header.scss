@@ -1,13 +1,13 @@
 .header {
   align-items: center;
-  background-color: #c1c1c1;
+  background-color: #1a1a1a;
   display: flex;
   flex-direction: row;
-  gap: 8px;
   padding: 20px 10px;
+  justify-content: space-between;
 
   &__title {
-    width: 100%;
+    width: 50%;
   }
 
   &__amount {

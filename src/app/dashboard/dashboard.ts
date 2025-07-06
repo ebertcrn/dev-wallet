@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import {
   CryptoCard,
   CryptoCardConfiguration,
 } from '../crypto/crypto-card/crypto-card';
 import { CommonModule } from '@angular/common';
+import { CryptoData, DashboardService } from './dashboard.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,31 +14,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard {
-  cryptoConfig: CryptoCardConfiguration[] = [
-    {
-      logo: 'img/bitcoin.png',
-      name: 'BitCoin',
-      value: '4.250,00',
-      variation: '2.3',
-    },
-    {
-      logo: 'img/solana.png',
-      name: 'Solana',
-      value: '125.56',
-      variation: '2.3',
-    },
-    {
-      logo: 'img/cardano.png',
-      name: 'Cardano',
-      value: '1.35',
-      variation: '2.3',
-    },
-    {
-      logo: 'img/ethereum.png',
-      name: 'Ethereum',
-      value: '2.690,45',
-      variation: '1.2',
-    },
-  ];
+export class Dashboard implements OnInit {
+  cryptoConfig: CryptoCardConfiguration[] = [];
+
+  private dashboardService = inject(DashboardService);
+
+  ngOnInit(): void {
+    this.dashboardService.getCryptoData().subscribe({
+      next: (res: CryptoData[]) => {
+        console.log(res);
+        this.initializeCryptoConfig(res);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
+
+  private initializeCryptoConfig(data: CryptoData[]): void {
+    this.cryptoConfig = data;
+  }
 }
