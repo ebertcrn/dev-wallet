@@ -1,0 +1,12 @@
+<div class="crypto-card">
+  <div class="crypto-card__img">
+    <img [src]="cryptoConfig.logo" alt="" />
+  </div>
+  <div class="crypto-card__details">
+    <span class="crypto-name">{{ cryptoConfig.name }}</span>
+    <div class="value-container">
+      <span class="value">{{ cryptoConfig.value }}</span>
+      <span class="variation">{{ cryptoConfig.variation }}</span>
+    </div>
+  </div>
+</div>
